@@ -1,11 +1,11 @@
 from tempfile import TemporaryDirectory
-from dt.chat import Chat
+from chat import Chat
 import pandas as pd
 import json
 import numpy as np
 import random
 import os
-from dt.perspectives.machine_ethics.calculate_score import main as calculate_scores
+from perspectives.machine_ethics.calculate_score import main as calculate_scores
 
 random.seed(100)
 np.random.seed(100)

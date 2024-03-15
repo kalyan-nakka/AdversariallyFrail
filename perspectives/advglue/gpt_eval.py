@@ -8,8 +8,8 @@ from tempfile import TemporaryDirectory
 import numpy as np
 import pandas as pd
 from datasets import load_metric, load_dataset, Dataset
-from dt.chat import Chat
-from dt.perspectives.advglue.adv_stats import main as calculate_scores
+from chat import Chat
+from perspectives.advglue.adv_stats import main as calculate_scores
 from tqdm import tqdm
 
 # Naming conversion...
