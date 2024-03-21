@@ -4,9 +4,9 @@ import openai
 import argparse
 import json
 import pandas as pd
-from dt.chat import Chat
+from chat import Chat
 from tempfile import TemporaryDirectory
-from dt.perspectives.stereotype.agreement_func import calculate_agreeability, classify_response, create_json
+from perspectives.stereotype.agreement_func import calculate_agreeability, classify_response, create_json
 
 
 class MessageConstructor(object):

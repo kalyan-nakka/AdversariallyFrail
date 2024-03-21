@@ -5,10 +5,10 @@ from tempfile import TemporaryDirectory
 from fairlearn.metrics import equalized_odds_difference
 from fairlearn.metrics import demographic_parity_difference
 
-from dt.perspectives.fairness.fair_chat import do_classification
-from dt.perspectives.fairness.task_description import task_dic
-from dt.chat import Chat
-from dt.perspectives.fairness.score_calculation_script import aggregate_current_scores
+from perspectives.fairness.fair_chat import do_classification
+from perspectives.fairness.task_description import task_dic
+from chat import Chat
+from perspectives.fairness.score_calculation_script import aggregate_current_scores
 
 
 def main(args):
