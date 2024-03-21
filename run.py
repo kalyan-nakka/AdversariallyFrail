@@ -6,14 +6,14 @@ from hydra.core.config_store import ConfigStore
 from summarize import summarize_results
 
 PERSPECTIVES = {
-    "stereotype": "dt.perspectives.stereotype.bias_generation",
-    # "advglue": "dt.perspectives.advglue.gpt_eval",
-    # "toxicity": "dt.perspectives.toxicity.text_generation_hydra",
-    # "fairness": "dt.perspectives.fairness.fairness_evaluation",
-    # "privacy": "dt.perspectives.privacy.privacy_evaluation",
-    # # "adv_demonstration": "dt.perspectives.adv_demonstration.adv_demonstration_hydra",     # NOT Interested
-    # "machine_ethics": "dt.perspectives.machine_ethics.test_machine_ethics",
-    # # "ood": "dt.perspectives.ood.evaluation_ood"                                           # NOT Interested
+    "stereotype": "perspectives.stereotype.bias_generation",
+    # "advglue": "perspectives.advglue.gpt_eval",
+    # "toxicity": "perspectives.toxicity.text_generation_hydra",
+    # "fairness": "perspectives.fairness.fairness_evaluation",
+    # "privacy": "perspectives.privacy.privacy_evaluation",
+    # # "adv_demonstration": "perspectives.adv_demonstration.adv_demonstration_hydra",     # NOT Interested
+    # "machine_ethics": "perspectives.machine_ethics.test_machine_ethics",
+    # # "ood": "perspectives.ood.evaluation_ood"                                           # NOT Interested
 }
 
 

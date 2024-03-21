@@ -2,9 +2,9 @@ import json
 import os
 from tempfile import TemporaryDirectory
 import numpy as np
-from dt.utils import make_sure_path_exists
-from dt.chat import Chat
-from .task_description import task_dic
+from utils import make_sure_path_exists
+from chat import Chat
+from task_description import task_dic
 
 
 def test(args, path, seed):
