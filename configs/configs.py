@@ -166,32 +166,94 @@ def build_config(perspectives: Dict) -> BaseConfig:
     if perspectives.get("stereotype", None) is not None:
         config_from_yaml = load_config("stereotype_config.yaml")
         if config_from_yaml:
-            pass
+            stereotype = StereotypeConfig(skip_generation=config_from_yaml.get("skip_generation", False),
+                                          sys_prompt_type=config_from_yaml.get("sys_prompt_type", "targeted"),
+                                          n_gens=config_from_yaml.get("n_gens", 25),
+                                          out_dir=config_from_yaml.get("out_dir", None))
 
     if perspectives.get("advglue", None) is not None:
         config_from_yaml = load_config("advglue_config.yaml")
         if config_from_yaml:
-            pass
+            advglue = AdvGLUEConfig(sys=config_from_yaml.get("sys", False),
+                                    demo=config_from_yaml.get("demo", False),
+                                    data_file=config_from_yaml.get("data_file", None),
+                                    out_file=config_from_yaml.get("out_file", None),
+                                    no_adv=config_from_yaml.get("no_adv", False),
+                                    resume=config_from_yaml.get("resume", False),
+                                    save_interval=config_from_yaml.get("save_interval", 100),
+                                    remove_newline=config_from_yaml.get("remove_newline", False),
+                                    task=config_from_yaml.get("task", field(default_factory=list)))
 
     if perspectives.get("toxicity", None) is not None:
         config_from_yaml = load_config("toxicity_config.yaml")
         if config_from_yaml:
-            pass
+            toxicity = ToxicityConfig(data_file=config_from_yaml.get("data_file", None),
+                                      out_file=config_from_yaml.get("out_file", None),
+                                      template=config_from_yaml.get("template", 0),
+                                      max_tokens=config_from_yaml.get("max_tokens", 150),
+                                      n=config_from_yaml.get("n", 0),
+                                      t=config_from_yaml.get("t", 1),
+                                      save_interval=config_from_yaml.get("save_interval", 100),
+                                      api=config_from_yaml.get("api", None))
 
     if perspectives.get("fairness", None) is not None:
         config_from_yaml = load_config("fairness_config.yaml")
         if config_from_yaml:
-            pass
+            fairness = FairnessConfig(data_dir=config_from_yaml.get("data_dir", None),
+                                      prompt_file=config_from_yaml.get("prompt_file", None),
+                                      gt_file=config_from_yaml.get("gt_file", None),
+                                      sensitive_attr_file=config_from_yaml.get("sensitive_attr_file", None),
+                                      dataset=config_from_yaml.get("dataset", "adult"),
+                                      out_file=config_from_yaml.get("out_file", ""),
+                                      score_calculation_only=config_from_yaml.get("score_calculation_only", False),
+                                      max_tokens=config_from_yaml.get("max_tokens", 20))
 
     if perspectives.get("privacy", None) is not None:
         config_from_yaml = load_config("privacy_config.yaml")
         if config_from_yaml:
-            pass
+            privacy = PrivacyConfig(scenario_name=config_from_yaml.get("scenario_name", None),
+                                    data_file=config_from_yaml.get("data_file", None),
+                                    out_file=config_from_yaml.get("out_file", None),
+                                    template=config_from_yaml.get("template", 0),
+                                    max_tokens=config_from_yaml.get("max_tokens", 150),
+                                    n=config_from_yaml.get("n", 1),
+                                    t=config_from_yaml.get("t", 1),
+                                    seed=config_from_yaml.get("seed", 1),
+                                    dataset_size=config_from_yaml.get("dataset_size", 0),
+                                    few_shot_num=config_from_yaml.get("few_shot_num", 0),
+                                    batch_size=config_from_yaml.get("batch_size", 0),
+                                    question_prompt=config_from_yaml.get("question_prompt", 0),
+                                    personal_infos=config_from_yaml.get("personal_infos", field(default_factory=list)),
+                                    prompt_types=config_from_yaml.get("prompt_types", field(default_factory=list)),
+                                    privacy_topics=config_from_yaml.get("privacy_topics", field(default_factory=list)))
 
     if perspectives.get("machine_ethics", None) is not None:
         config_from_yaml = load_config("machine_ethics_config.yaml")
         if config_from_yaml:
-            pass
+            machine_ethics = EthicsConfig(data_name=config_from_yaml.get("data_name", None),
+                                          test_data_file=config_from_yaml.get("test_data_file", None),
+                                          train_data_file=config_from_yaml.get("train_data_file", None),
+                                          out_file=config_from_yaml.get("out_file", None),
+                                          test_num=config_from_yaml.get("test_num", 0),
+                                          few_shot_num=config_from_yaml.get("few_shot_num", 0),
+                                          jailbreak_prompt=config_from_yaml.get("jailbreak_prompt", 0),
+                                          evasive_sentence=config_from_yaml.get("evasive_sentence", 0))
+
+    config_from_yaml = load_config("model_config.yaml")
+    if config_from_yaml:
+        model_config = ModelConfig(model=config_from_yaml.get("model", "openai/gpt-3.5-turbo-0301"),
+                                   type=config_from_yaml.get("type", ModelType.CHAT),
+                                   conv_template=config_from_yaml.get("conv_template", None),
+                                   chat_template=config_from_yaml.get("chat_template", None),
+                                   model_loader=config_from_yaml.get("model_loader", ModelLoader.HF),
+                                   torch_dtype=config_from_yaml.get("torch_dtype", WeightType.BFLOAT16),
+                                   trust_remote_code=config_from_yaml.get("trust_remote_code", True),
+                                   use_auth_token=config_from_yaml.get("use_auth_token", True),
+                                   disable_exllama=config_from_yaml.get("disable_exllama", False),
+                                   inject_fused_attention=config_from_yaml.get("inject_fused_attention", True),
+                                   quant_file=config_from_yaml.get("quant_file", None),
+                                   tokenizer_name=config_from_yaml.get("tokenizer_name", None),
+                                   device_map=config_from_yaml.get("device_map", "auto"))
 
     return BaseConfig(model_config=model_config,
                       advglue=advglue,

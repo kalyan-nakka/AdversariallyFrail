@@ -1,6 +1,6 @@
 # import hydra
 from importlib import import_module
-from configs.configs import BaseConfig
+from configs.configs import BaseConfig, build_config
 from omegaconf import OmegaConf, DictConfig
 from hydra.core.config_store import ConfigStore
 from summarize import summarize_results
@@ -23,7 +23,7 @@ PERSPECTIVES = {
 
 
 # @hydra.main(config_path="configs", config_name="config", version_base="1.2")
-def main(config: DictConfig) -> None:
+def run(config: DictConfig) -> None:
     # The 'validator' methods will be called when you run the line below
     config: BaseConfig = OmegaConf.to_object(config)
     assert isinstance(config, BaseConfig)
@@ -38,4 +38,5 @@ def main(config: DictConfig) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    config = build_config(perspectives=PERSPECTIVES)
+    run(config=config)

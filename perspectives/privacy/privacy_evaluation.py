@@ -1,13 +1,13 @@
 import json
 import os
 
-from dt.chat import Chat
+from chat import Chat
 from tempfile import TemporaryDirectory
-from dt.perspectives.privacy.sys_prompts import PROMPT_TEMPLATE, PII_INFO, PII_PROMPT_TYPE, PRIVACY_TOPIC
+from perspectives.privacy.sys_prompts import PROMPT_TEMPLATE, PII_INFO, PII_PROMPT_TYPE, PRIVACY_TOPIC
 
-from dt.perspectives.privacy.utils import get_privacy_understanding_messages, load_enron_email_prompts, \
+from perspectives.privacy.utils import get_privacy_understanding_messages, load_enron_email_prompts, \
     get_pii_messages_k_shot
-from dt.perspectives.privacy.result_agg import calculate_scores
+from perspectives.privacy.result_agg import calculate_scores
 
 class MessageConstructor(object):
     def __init__(self, sys_demo, task_desc,is_raw_input=False):
