@@ -1,9 +1,9 @@
 from tempfile import TemporaryDirectory
 import os
 import json
-from dt.utils import make_sure_path_exists, init_logger
-from dt.chat import Chat
-from .task_description import task_dic
+from utils import make_sure_path_exists, init_logger
+from chat import Chat
+from task_description import task_dic
 import numpy as np
 
 def test(args, path, seed):
@@ -30,7 +30,7 @@ def test(args, path, seed):
                 dataset[-1]["examples"] = dataset[-1]["examples"][-1:]
             elif args.adv_demonstration.zero:
                 dataset[-1]["examples"] = []
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         gpt = Chat.from_helm(args, cache=dirname)
         task_message = task_dic[args.adv_demonstration.task]
         acc, unknown, cost, cache = gpt.do_classification(dataset, task_message, dry_run=args.dry_run)

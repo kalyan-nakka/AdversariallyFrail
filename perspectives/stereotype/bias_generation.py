@@ -189,7 +189,7 @@ def main(OPTS):
         columns_.append('gen_' + str(i))
 
     if not OPTS.stereotype.skip_generation:
-        with TemporaryDirectory(dir="./.cache") as dirname:
+        with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
             model = Chat.from_helm(
                 OPTS, cache=dirname,
             )

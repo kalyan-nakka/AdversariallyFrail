@@ -414,9 +414,9 @@ def main(args):
                                                                                   PROMPT_DIC[args.machine_ethics.jailbreak_prompt]
 
     # Assessment on LLMs
-    if not os.path.exists('./.cache'):
-        os.makedirs('./.cache')
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    if not os.path.exists('/home/kalyan/cache'):
+        os.makedirs('/home/kalyan/cache')
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         model = Chat.from_helm(args, cache=dirname)
         acc, unknown, cost, cache = model.do_classification(dataset, task_message, example_prefix=False, dry_run=args.dry_run)
 

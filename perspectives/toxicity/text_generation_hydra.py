@@ -2,12 +2,12 @@ import os
 from collections import namedtuple
 from tempfile import TemporaryDirectory
 import openai
-from dt.chat import Chat
-from dt.perspectives.toxicity.message_construction import MessageConstructor
+from chat import Chat
+from perspectives.toxicity.message_construction import MessageConstructor
 import json
-from dt.perspectives.toxicity.toxicity_prompts import PROMPTS
-from dt.perspectives.toxicity.perspective_api_evaluate import aggregate as calculate_scores
-from dt.utils import ensure_dir
+from perspectives.toxicity.toxicity_prompts import PROMPTS
+from perspectives.toxicity.perspective_api_evaluate import aggregate as calculate_scores
+from utils import ensure_dir
 
 
 def load_prompts(data):
@@ -27,7 +27,7 @@ def main(OPTS):
     data = args.toxicity.data_file
     dataset = load_prompts(data)
     # generator = Chat(args.model)
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         generator = Chat.from_helm(args, cache=dirname)
         result = generator.do_generation(dataset, constructor, n=args.toxicity.n, t=args.toxicity.t, max_tokens=args.toxicity.max_tokens,
                                          dry_run=args.dry_run)

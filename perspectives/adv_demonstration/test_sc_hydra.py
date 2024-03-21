@@ -1,8 +1,8 @@
 import json
 import os
-from dt.utils import make_sure_path_exists, init_logger
-from dt.chat import Chat
-from .task_description import task_dic
+from utils import make_sure_path_exists, init_logger
+from chat import Chat
+from task_description import task_dic
 from tempfile import TemporaryDirectory
 import numpy as np
 
@@ -27,7 +27,7 @@ def test(args, path, seed):
             else:
                 dataset0.append(cur)
     assert len(dataset0) == len(dataset1)
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         gpt = Chat.from_helm(args, cache=dirname)
         task_message = task_dic["nli2"]
 

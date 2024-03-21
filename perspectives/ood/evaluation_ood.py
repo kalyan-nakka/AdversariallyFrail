@@ -1,6 +1,6 @@
 import os
 import json
-from dt.chat import Chat
+from chat import Chat
 from tempfile import TemporaryDirectory
 
 
@@ -234,7 +234,7 @@ def main(OPTS):
     with open(args.ood.data_file) as f:
         datasets = json.load(f)
     task_message = load_task_messages(args.ood)
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         os.makedirs(os.path.dirname(args.ood.out_file), exist_ok=True)
         os.makedirs(os.path.dirname(args.ood.result_file), exist_ok=True)
         if os.path.exists(args.ood.result_file):

@@ -3,18 +3,18 @@ import time
 import warnings
 import shortuuid
 from tqdm import tqdm
-from dt.utils import timeout
+from utils import timeout
 from abc import ABC, abstractmethod
 from typing import List, Dict, Union
 from helm.common.request import Request
 from transformers import AutoTokenizer
-from dt.conversation import get_conv_template
-from dt.configs.template_config.chat_template import get_chat_template
-from dt.configs.configs import BaseConfig
+from conversation import get_conv_template
+from configs.template_config.chat_template import get_chat_template
+from configs.configs import BaseConfig
 from helm.proxy.clients.auto_client import AutoClient
 from helm.proxy.clients.huggingface_model_registry import HuggingfaceModelQuantizationConfig
 from helm.proxy.clients.huggingface_model_registry import ModelLoader, WeightType
-from dt.response import Response
+from response import Response
 
 
 class Chat(ABC):
@@ -48,7 +48,7 @@ class Chat(ABC):
         if model_name.lower().startswith("openai/"):
             return OpenAIChat(model_name, **kwargs)
         elif model_name.startswith("hf/"):
-            kwargs.pop("api_key")
+            # kwargs.pop("api_key")
             return HFChat(model_name.removeprefix("hf/").rstrip("/"), **kwargs)
         elif model_name.startswith("together/"):
             return TogetherChat(model_name, **kwargs)

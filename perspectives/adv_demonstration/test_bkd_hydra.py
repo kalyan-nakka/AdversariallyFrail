@@ -21,7 +21,7 @@ def test(args, path, seed):
         for line in f.readlines():
             cur = json.loads(line)
             dataset.append(cur)
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         gpt = Chat.from_helm(args, cache=dirname)
         task_message = task_dic[args.adv_demonstration.task]
         acc, unknown, cost, cache = gpt.do_classification(dataset, task_message, dry_run=args.dry_run)

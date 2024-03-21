@@ -272,9 +272,9 @@ def classify(OPTS, model, dataset, task_name, current_results=None, prompt_token
 
 def main(OPTS):
     TASK2SHORTPROMPT["mnli-mm"] = TASK2SHORTPROMPT["mnli"]
-    if not os.path.exists("./.cache"):
-        os.makedirs("./.cache")
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    if not os.path.exists("/home/kalyan/cache"):
+        os.makedirs("/home/kalyan/cache")
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         model = Chat.from_helm(OPTS, cache=dirname)
 
         if OPTS.advglue.data_file:

@@ -42,7 +42,7 @@ def generate_and_save(args, dataset, gt_list, constructor, out_file, batch_size,
     comple_tokens = 0
     num_prompt = 0
     
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         model = Chat.from_helm(args, cache=dirname)
 
         for batch_idx in range(num_batches):

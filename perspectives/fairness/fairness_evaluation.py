@@ -17,7 +17,7 @@ def main(args):
         for line in f.readlines():
             dataset.append(json.loads(line))
 
-    with TemporaryDirectory(dir="./.cache") as dirname:
+    with TemporaryDirectory(dir="/home/kalyan/cache") as dirname:
         if args.dry_run:
             model = Chat.from_helm(args, cache=dirname)
             acc, unknown, (cost, prompt_tokens, cont_tokens), cache = model.do_classification(dataset, task_message=task_dic[args.fairness.dataset], example_prefix=True, dry_run=args.dry_run)
